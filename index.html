@@ -33,17 +33,14 @@
     <script>
       document.getElementById('premiumForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form from submitting the traditional way
-        var premium1 = document.getElementById('premium1').value;
-        var premium2 = document.getElementById('premium2').value;
+        var premium1 = Number(document.getElementById('premium1').value);
+        var premium2 = Number(document.getElementById('premium2').value);
 
-        // Convert premium2 to a product of its digits
-        var product = premium2.split('').reduce((acc, num) => acc * Number(num), 1);
+        // Calculate the product
+        var product = premium1 * premium2;
 
-        // Combine digits from premium1 and product
-        var combinedDigits = premium1 + product;
-
-        // Remove duplicate digits
-        var uniqueDigits = Array.from(new Set(combinedDigits.split(''))).join('');
+        // Convert the product to a string and get unique digits
+        var uniqueDigits = Array.from(new Set(product.toString())).join('');
 
         // Display the unique digits
         document.querySelector('.result').innerText = 'Unique digits: ' + uniqueDigits;
